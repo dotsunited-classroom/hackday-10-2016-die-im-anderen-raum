@@ -1,7 +1,5 @@
 <?php
 
-include __DIR__ . "/Response.php";
-
 class Router
 {
     const GET = 'get';
@@ -16,7 +14,7 @@ class Router
     {
         $this->path = $path;
 
-        $this->response = new Response();
+        //$this->response = new Response();
     }
 
     protected function addRoute($method, $url, $callback)
@@ -49,10 +47,12 @@ class Router
             $this->routes[$request->getMethod()][$request->getRoute()]['callback']();
         } else {
             if(is_callable($this->errors['404'])) {
-                $this->response->send(404);
+                //$this->response->send(404);
+                header("HTTP/1.0 404 Not Found");
                 $this->errors['404']();
             } else {
-                $this->response->send(404, 'Datei nicht gefunden!');
+                header("HTTP/1.0 404 Not Found");
+                //$this->response->send(404, 'Datei nicht gefunden!');
             }
         }
     }

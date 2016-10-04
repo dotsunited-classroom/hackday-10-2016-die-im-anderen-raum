@@ -26,7 +26,7 @@ $router->get('/', function() use ($req, $res) {
 });
 
 $router->error('404', function() use ($req, $res) {
-    return $res->send(404);
+    echo "Fehler";
 });
 
 $router->start($req);
